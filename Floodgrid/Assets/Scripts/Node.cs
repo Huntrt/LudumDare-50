@@ -4,6 +4,7 @@ public class Node : MonoBehaviour
 {
 	public bool flooded; [HideInInspector] bool needToFlood;
 	public Vector2 coord, position;
+	public Item itemOnNode;
 	public int neighboursCount; public Node[] neighbours;
 	public GameObject nodeObject; public SpriteRenderer nodeRender, borderRender;
 	Map m;
@@ -55,7 +56,7 @@ public class Node : MonoBehaviour
 		//If this node it need to flood OR it on the border
 		if(needToFlood || (flooded == false && neighboursCount < 4))
 		{	
-			//If successful flooed with rate
+			//If successful flood with rate
 			if(m.floodRate >= Random.Range(0f,100f))
 			{
 				//Is is now flood
@@ -83,6 +84,22 @@ public class Node : MonoBehaviour
 	}
 
 	public void Drain() {}
+
+	public void AddItem(GameObject item)
+	{
+		//Spawn the represent item at position
+		GameObject added = Instantiate(item, position, Quaternion.identity);
+		//This node now has item
+		itemOnNode = added.GetComponent<Item>();
+	}
+
+	public void PickItem()
+	{
+		//The player now equip the item on node
+		Player.i.Equiping(itemOnNode);
+		//Destroy the item object item then this node no longer has item
+		Destroy(itemOnNode.gameObject); itemOnNode = null;
+	}
 
 	public void ColorNode(Color node, Color border) {nodeRender.color = node;borderRender.color = border;}
 

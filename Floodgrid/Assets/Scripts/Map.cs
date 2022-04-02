@@ -26,11 +26,6 @@ public class Map : MonoBehaviour
 		GenerateMap();
 	}
 
-    void Update()
-    {
-		if(Input.GetKeyDown(KeyCode.Space)) {GenerateMap();}
-    }
-
 	public void GenerateMap()
 	{
 		//Renew the node list
