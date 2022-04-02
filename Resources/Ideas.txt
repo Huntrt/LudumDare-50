@@ -1,5 +1,1 @@
-Delay the inevitable:
-
-1. Placing light source to prevent the shadow devour you - B
-2. An closing box that you try to breaking out by breaking it - C
-3. An turn base game set in an small map. Each time move the grid will became more infected using item to survive as many way as possible - A
+Delay the inevitable: An turn base game where water will cover the map each turn. Try to obtain item to surive as long as possible
