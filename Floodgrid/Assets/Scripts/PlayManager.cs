@@ -6,6 +6,11 @@ public class PlayManager : MonoBehaviour
 {
     public int audioVolume;
 	public TextMeshProUGUI audioDisplay;
+	public bool pause;
+	public GameObject pauseMenu;
+
+	//Set this class to singleton
+	public static PlayManager i {get{if(_i==null){_i = GameObject.FindObjectOfType<PlayManager>();}return _i;}} static PlayManager _i;
 
 	void Awake()
 	{
@@ -25,6 +30,16 @@ public class PlayManager : MonoBehaviour
 		audioDisplay.text = (audioVolume*10).ToString();
 		//Set the game manager audio volume
 		GameManager.i.SetVolume(audioVolume);
+	}
+
+	public void PauseToggle()
+	{
+		//Toggle the pause menu
+		pauseMenu.SetActive(!pauseMenu.activeInHierarchy);
+		//Toggle pause
+		pause = !pause;
+		//Toggle between time scale
+		if(Time.timeScale == 1){Time.timeScale = 0;} else {Time.timeScale = 1;}
 	}
 
     public void LoadSceneIndex(int i) {SceneManager.LoadScene(i, LoadSceneMode.Single);}

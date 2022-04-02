@@ -8,7 +8,7 @@ public class Map : MonoBehaviour
 	public GameObject floorPrefab; GameObject group;
 	public float floodRate;
 	public Vector2 mapSize, nodeScale;
-	public List<NodeData> nodes = new List<NodeData>();
+	public List<Node> nodes = new List<Node>();
 	public event Action completeGenerate;
 
 #region Classes
@@ -34,7 +34,7 @@ public class Map : MonoBehaviour
 	public void GenerateMap()
 	{
 		//Renew the node list
-		nodes.Clear(); nodes = new List<NodeData>(); 
+		nodes.Clear(); nodes = new List<Node>(); 
 		//Renew the group then name it
 		Destroy(group); group = new GameObject(); group.name = "Floor";
 		//Create the first new node
@@ -72,7 +72,7 @@ public class Map : MonoBehaviour
 		//Group the spawned floot
 		spawned.transform.SetParent(group.transform);
 		//Get the node data of floor spawned
-		NodeData data = spawned.GetComponent<NodeData>();
+		Node data = spawned.GetComponent<Node>();
 		//Set data coordinates at x and y given
 		data.coord.x = x; data.coord.y = y;
 		//Set data position at x and y given increase with scale
@@ -83,16 +83,16 @@ public class Map : MonoBehaviour
 		nodes.Add(data);
 	}
 
-	public NodeData FindNodeAtCoordinates(Vector2 coord)
+	public Node FindNodeAtCoordinates(Vector2 coord)
 	{
 		//Go through all the nodes in list then return the nodes at given coordinates if has one
 		for (int n = 0; n < nodes.Count; n++) {if(nodes[n].coord == coord) {return nodes[n];}} return null;
 	}
 
-	public NodeData[] ScanNode(Vector2 coord)
+	public Node[] ScanNode(Vector2 coord)
 	{
 		//Array for all 4 node to scan
-		NodeData[] scan = new NodeData[4];
+		Node[] scan = new Node[4];
 		//@ Return the scan result at 4 direction
 		scan[0] = FindNodeAtCoordinates(new Vector2(coord.x, coord.y + 1));
 		scan[1] = FindNodeAtCoordinates(new Vector2(coord.x, coord.y - 1));

@@ -1,15 +1,15 @@
 using UnityEngine;
 
-public class NodeData : MonoBehaviour
+public class Node : MonoBehaviour
 {
 	public bool flooded; [HideInInspector] bool needToFlood;
 	public Vector2 coord, position;
-	public int neighboursCount; public NodeData[] neighbours;
+	public int neighboursCount; public Node[] neighbours;
 	public GameObject nodeObject; public SpriteRenderer nodeRender, borderRender;
 	Map m;
 
 	//Get the map
-	void Awake() {m = Map.i; neighbours = new NodeData[4];}
+	void Awake() {m = Map.i; neighbours = new Node[4];}
 
 	void Start()
 	{
@@ -34,7 +34,7 @@ public class NodeData : MonoBehaviour
 	void GetNeighbours()
 	{
 		//Get the scanned node
-		NodeData[] scanned = m.ScanNode(coord);
+		Node[] scanned = m.ScanNode(coord);
 		//Go through all the scanned node 
 		for (int s = 0; s < scanned.Length; s++) 
 		{
