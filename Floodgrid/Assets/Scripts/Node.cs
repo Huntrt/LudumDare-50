@@ -4,7 +4,7 @@ public class Node : MonoBehaviour
 {
 	public bool flooded; [HideInInspector] bool needToFlood;
 	public Vector2 coord, position;
-	public Item itemOnNode;
+	public Item itemOnNode; int despawnCounter;
 	public int neighboursCount; public Node[] neighbours;
 	public GameObject nodeObject; public SpriteRenderer nodeRender, borderRender;
 	Map m;
@@ -28,8 +28,8 @@ public class Node : MonoBehaviour
 	{
 		//Check border upon map complete generation
 		m.completeGenerate += GetNeighbours;
-		//Flood when player move
-		Player.i.onMove += Flood;
+		//Flood and despawn item when player move
+		Player.i.onMove += Flood; Player.i.onMove += DespawnItem;
 	}
 
 	void GetNeighbours()
@@ -89,6 +89,8 @@ public class Node : MonoBehaviour
 	{
 		//Spawn the represent item at position
 		GameObject added = Instantiate(item, position, Quaternion.identity);
+		//Reset the despawn counter
+		despawnCounter = ItemSpawner.i.despawnTurn;
 		//This node now has item
 		itemOnNode = added.GetComponent<Item>();
 	}
@@ -97,8 +99,20 @@ public class Node : MonoBehaviour
 	{
 		//The player now equip the item on node
 		Player.i.Equiping(itemOnNode);
-		//Destroy the item object item then this node no longer has item
+		//Destroy the item object then this node no longer has item
 		Destroy(itemOnNode.gameObject); itemOnNode = null;
+	}
+
+	void DespawnItem()
+	{
+		//If there is an item on node
+		if(itemOnNode != null)
+		{
+			//Decrease depawn counter by
+			despawnCounter--;
+			//Despawn the item object then this node no longer has item
+			if(despawnCounter == 0) {Destroy(itemOnNode.gameObject); itemOnNode = null;}
+		}
 	}
 
 	public void ColorNode(Color node, Color border) {nodeRender.color = node;borderRender.color = border;}
@@ -106,6 +120,6 @@ public class Node : MonoBehaviour
 	void OnDisable()
 	{
 		m.completeGenerate -= GetNeighbours;
-		if(Player.i != null) Player.i.onMove -= Flood;
+		if(Player.i != null) {Player.i.onMove -= Flood; Player.i.onMove -= DespawnItem;}
 	}
 }

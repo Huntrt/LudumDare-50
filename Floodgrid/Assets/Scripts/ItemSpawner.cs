@@ -3,11 +3,14 @@ using System;
 
 public class ItemSpawner : MonoBehaviour
 {
-    public float spawnRate, spawnFrequent, spawnAmount;
+    public float spawnRate;
+	public int spawnFrequent, spawnAmount, despawnTurn;
 	[SerializeField] SpawnData[] spawns; 
 	//List to spawn an item using it rarity
-	[Serializable] class SpawnData {public GameObject item; public float rarity;} 
+	[Serializable] class SpawnData {public GameObject item; public float rarity;}
 	Map m; Player p;
+	//Set this class to singleton
+	public static ItemSpawner i {get{if(_i==null){_i = GameObject.FindObjectOfType<ItemSpawner>();}return _i;}} static ItemSpawner _i;
 
 	void Start()
 	{
