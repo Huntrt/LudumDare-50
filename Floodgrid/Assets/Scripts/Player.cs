@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
 	[SerializeField] ItemAbility abilites;
 	[Header("UI")] public GameObject[] breathCounter; public GameObject itemPanelDisplay; 
 	[SerializeField] TextMeshProUGUI itemNameDisplay, itemDescriptionDisplay, pointCounter; 
+	[SerializeField] GameObject deadDisplay; [SerializeField] TextMeshProUGUI deadPointDisplay;
 	//Set this class to singleton
 	public static Player i {get{if(_i==null){_i = GameObject.FindObjectOfType<Player>();}return _i;}} static Player _i;
 
@@ -87,24 +88,36 @@ public class Player : MonoBehaviour
 		{
 			//Lost an breath point
 			_breath--;
-			//If out of breath
+			//Hide an bubble
+			breathCounter[_breath].SetActive(false);
+			//! If out of breath
 			if(_breath <= 0)
 			{
-				//... Die script (enable die menu)
-				print("DIES");
+				//Update the point display in text
+				deadPointDisplay.text = moved.ToString();
+				//Deactive player
+				gameObject.SetActive(false);
+				//Enable die menu
+				deadDisplay.SetActive(true);
 			}
 		}
 		//If it is not drowning
 		else
 		{
 			//Recovery breath slowly if lose any
-			if(_breath < breathCounter.Length) {_recover++; if(_recover >= recover) {_breath++; _recover -= _recover;}}
-		}
-		//Go through all the breath counter
-		for (int b = 0; b < breathCounter.Length; b++)
-		{
-			//Only active the counter base on how many breath point left
-			if(b <= _breath) {breathCounter[b].SetActive(true);} else {breathCounter[b].SetActive(false);}
+			if(_breath < breathCounter.Length) 
+			{
+				//Increase recover counter
+				_recover++; 
+				//If has recover enough and breath haven't maxxed
+				if(_recover >= recover && _breath < breathCounter.Length) 
+				{
+					//Increase breath and reset recover counter
+					_breath++; _recover -= _recover;
+					//Enable bubble
+					breathCounter[_breath-1].SetActive(true);
+				}
+			}
 		}
 	}
 
@@ -113,6 +126,8 @@ public class Player : MonoBehaviour
 		//If movement not being lock
 		if(!lockMovement)
 		{
+			//If this movement has been block by any border
+			bool blocked = false;
 			//Move multiple time depend on speed
 			for (int s = 0; s < speed; s++)
 			{
@@ -142,9 +157,11 @@ public class Player : MonoBehaviour
 					//The player has move to target
 					Move(target);
 				}
+				//! This way has been blocked
+				else {blocked = true;}
 			}
-			//Call on move event only 
-			onMove.Invoke(direction);
+			//Call on move event only when not get block
+			if(!blocked) {onMove.Invoke(direction);}
 		}
 		//Cast any abilites that use move despite movement lock
 		abilites.MoveCasting(direction);
