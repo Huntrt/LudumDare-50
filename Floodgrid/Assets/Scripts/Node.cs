@@ -2,12 +2,11 @@ using UnityEngine;
 
 public class Node : MonoBehaviour
 {
-	public bool flooded; int freezeConter; [HideInInspector] bool needToFlood;
+	public bool flooded; public int freezeConter; [HideInInspector] bool needToFlood;
 	public Vector2 coord, position;
 	public Item itemOnNode; int despawnCounter;
 	public int neighboursCount; public Node[] neighbours;
 	public GameObject nodeObject; public SpriteRenderer nodeRender, borderRender;
-	public Map.NodeColor nodeColor;
 	Map m;
 
 	//Get the map
@@ -19,8 +18,6 @@ public class Node : MonoBehaviour
 		nodeObject = gameObject;
 		//Get the sprite render object of this node
 		nodeRender = gameObject.GetComponent<SpriteRenderer>();
-		//Get the grid render object on the first child of this node
-		borderRender = gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>();
 		//Change color to empty color
 		ColoringNode(m.settings.emptyNode);
 	}
@@ -153,11 +150,7 @@ public class Node : MonoBehaviour
 		}
 	}
 
-	public void ColoringNode(Map.NodeColor color) 
-	{
-		nodeRender.color = color.node; borderRender.color = color.border;
-		nodeColor = color;
-	}
+	public void ColoringNode(Sprite nodeSprite) {nodeRender.sprite = nodeSprite;}
 
 	void OnDisable()
 	{

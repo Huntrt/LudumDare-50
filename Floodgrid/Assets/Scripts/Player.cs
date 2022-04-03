@@ -5,18 +5,23 @@ using TMPro;
 
 public class Player : MonoBehaviour
 {
-	public int moved;
-	public int speed;
+	public int moved, speed, recover, _breath; int _recover;
 	public Vector2 coordinates;
 	public bool drowning, lockMovement;
 	public Item.Type equipAbility;
 	public delegate void OnMove(Vector2 moveDirection); public event OnMove onMove;
 	[SerializeField] ItemAbility abilites;
-	[Header("UI")] public GameObject itemPanelDisplay; 
-	[SerializeField] TextMeshProUGUI itemNameDisplay, itemDescriptionDisplay; 
+	[Header("UI")] public GameObject[] breathCounter; public GameObject itemPanelDisplay; 
+	[SerializeField] TextMeshProUGUI itemNameDisplay, itemDescriptionDisplay, pointCounter; 
 	//Set this class to singleton
 	public static Player i {get{if(_i==null){_i = GameObject.FindObjectOfType<Player>();}return _i;}} static Player _i;
 
+	void Start()
+	{
+		//Get the breath amount from counter
+		_breath = breathCounter.Length; 
+	}
+	
 	void Update()
 	{
 		/// Don't ran anything if game pauses
@@ -38,6 +43,10 @@ public class Player : MonoBehaviour
 	{
 		//Player has move one more time
 		moved++;
+		//Update the point counter
+		pointCounter.text = moved.ToString();
+		//Run function calculted breathing
+		Breathing();
 		//If the player haven't has ability and there is item on destination then pick it up
 		if(equipAbility == Item.Type.none && destination.itemOnNode != null) {destination.PickItem();}
 	}
@@ -71,6 +80,34 @@ public class Player : MonoBehaviour
 		itemPanelDisplay.SetActive(false);
 	}
 
+	public void Breathing()
+	{
+		//If is it drowning
+		if(drowning)
+		{
+			//Lost an breath point
+			_breath--;
+			//If out of breath
+			if(_breath <= 0)
+			{
+				//... Die script (enable die menu)
+				print("DIES");
+			}
+		}
+		//If it is not drowning
+		else
+		{
+			//Recovery breath slowly if lose any
+			if(_breath < breathCounter.Length) {_recover++; if(_recover >= recover) {_breath++; _recover -= _recover;}}
+		}
+		//Go through all the breath counter
+		for (int b = 0; b < breathCounter.Length; b++)
+		{
+			//Only active the counter base on how many breath point left
+			if(b <= _breath) {breathCounter[b].SetActive(true);} else {breathCounter[b].SetActive(false);}
+		}
+	}
+
 	public void MoveInDirection(Vector2 direction)
 	{
 		//If movement not being lock
@@ -90,14 +127,14 @@ public class Player : MonoBehaviour
 					coordinates = target.coord;
 					//Move to destination position
 					transform.position = target.position;
-					//If destination is flooded 
-					if(target.flooded == true) 
+					//If destination is flooded and not freeze
+					if(target.flooded && target.freezeConter == 0) 
 					{
 						//Player are now drowning
 						drowning = true;
 					} 
-					//If destination are empty 
-					else 
+					//If destination are empty or is freeze
+					if(!target.flooded || target.freezeConter > 0)
 					{
 						//Player are no longer drown
 						drowning = false;

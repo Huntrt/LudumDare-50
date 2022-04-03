@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 9016387054677788647}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
-  Description: Explode in an small radius at where mouse click. Explode will drain
-    all water.
+  Description: Chose where to explode using control key, press use again to explode.
+    Explode will drain water in an small radius.
 --- !u!212 &9016387054677788644
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -87,8 +87,9 @@ SpriteRenderer:
   m_SortingLayerID: -992232899
   m_SortingLayer: 1
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 739184df08f0be1468ec02e65ad8f1fe, type: 3}
-  m_Color: {r: 0.122641504, g: 0.122641504, b: 0.122641504, a: 1}
+  m_Sprite: {fileID: -4888718896546230129, guid: 27409532ec6365d48a2971f104023f5e,
+    type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

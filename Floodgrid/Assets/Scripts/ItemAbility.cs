@@ -5,7 +5,7 @@ public class ItemAbility : MonoBehaviour
 {
 	Player p; Map m; void Awake() {p = Player.i; m = Map.i;}
 	public Item.Type useAbility; GameObject tempIndicator; Node tempNode;
-	List<Node> affectsNode = new List<Node>(); Map.NodeColor[] defaultColors;
+	List<Node> affectsNode = new List<Node>(); Sprite[] defaultSprite;
 	[Header("Run")]
 	public int runDistance;
 	public GameObject runIndicator;

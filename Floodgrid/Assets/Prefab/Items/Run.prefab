@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6960743745913396433}
   - component: {fileID: -6745550832096523723}
   m_Layer: 0
-  m_Name: Jump
+  m_Name: Run
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 6960743745913396434}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -86,8 +86,9 @@ SpriteRenderer:
   m_SortingLayerID: -992232899
   m_SortingLayer: 1
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 739184df08f0be1468ec02e65ad8f1fe, type: 3}
-  m_Color: {r: 0, g: 1, b: 0.47820973, a: 1}
+  m_Sprite: {fileID: -3531878321590394162, guid: 27409532ec6365d48a2971f104023f5e,
+    type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

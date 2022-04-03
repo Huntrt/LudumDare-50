@@ -7,16 +7,15 @@ public class Map : MonoBehaviour
 	public Settings settings;
 	public GameObject floorPrefab; GameObject group;
 	public float floodRate;
-	public Vector2 mapSize, nodeScale;
+	public Vector2 mapSize, nodeSpacing;
 	public List<Node> nodes = new List<Node>();
 	public event Action completeGenerate;
 
 #region Classes
 	[Serializable] public class Settings 
 	{
-		public NodeColor emptyNode, floodedNode, freezeNode;
+		public Sprite emptyNode, floodedNode, freezeNode;
 	}
-	[Serializable] public class NodeColor {public Color node, border;}
 #endregion
 	//Set this class singleton
 	public static Map i {get{if(_i==null){_i = GameObject.FindObjectOfType<Map>();}return _i;}} static Map _i;
@@ -62,16 +61,14 @@ public class Map : MonoBehaviour
 		if(FindNodeAtCoordinates(new Vector2(x,y)) != null) {return;}
 		//Spawned the floor at x and y
 		GameObject spawned = Instantiate(floorPrefab, Vector2.zero, Quaternion.identity);
-		//Set the floor scale
-		spawned.transform.localScale = nodeScale;
 		//Group the spawned floot
 		spawned.transform.SetParent(group.transform);
 		//Get the node data of floor spawned
 		Node data = spawned.GetComponent<Node>();
 		//Set data coordinates at x and y given
 		data.coord.x = x; data.coord.y = y;
-		//Set data position at x and y given increase with scale
-		data.position.x = x * nodeScale.x; data.position.y = y * nodeScale.y;
+		//Set data position at x and y given modify with spacing
+		data.position.x = x * nodeSpacing.x; data.position.y = y * nodeSpacing.y;
 		//Set the spawned floor position at it node data position
 		spawned.transform.position = data.position;
 		//Add node into list
