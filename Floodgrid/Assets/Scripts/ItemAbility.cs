@@ -13,6 +13,7 @@ public class ItemAbility : MonoBehaviour
 	public GameObject runIndicator;
 	[Header("Bomb")]
 	public GameObject bombIndicator;
+	public GameObject bombExplosion;
 	[Header("Freeze Ray")]
 	public int freezeRayDuration;
 	public GameObject freezeRayIndicator;
@@ -95,10 +96,22 @@ public class ItemAbility : MonoBehaviour
 			{
 				//Drain the temp node
 				tempNode.Drain();
+				//Spawn an explosion on temp node
+				Instantiate(bombExplosion, tempNode.position, Quaternion.identity);
 				//Scan the node around temp node
 				Node[] scanned = m.ScanNode(tempNode.coord);
-				//Drain all the available scanned node 
-				for (int s = 0; s < scanned.Length; s++) {if(scanned[s] != null) {scanned[s].Drain();}}
+				//Go through all the node has scanned
+				for (int s = 0; s < scanned.Length; s++) 
+				{
+					//If there node got scan
+					if(scanned[s] != null) 
+					{
+						//Spawn an explosion on that node
+						Instantiate(bombExplosion, scanned[s].position, Quaternion.identity);
+						//Drainthat node's water
+						scanned[s].Drain();
+					}
+				}
 				//Movement is no longer lock
 				p.lockMovement = false;
 				//Destroy the temporary indicator

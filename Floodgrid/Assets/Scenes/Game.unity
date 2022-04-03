@@ -5534,6 +5534,8 @@ MonoBehaviour:
     type: 3}
   bombIndicator: {fileID: 6101497115770203976, guid: b6112ef51d953a34dafc7501eb3e3791,
     type: 3}
+  bombExplosion: {fileID: 5679347344944552871, guid: 48b551d41348e614bac0b28bc9b9f656,
+    type: 3}
   freezeRayDuration: 25
   freezeRayIndicator: {fileID: 7271403300148204784, guid: 117fc56b9f8e2124ebf4d77ea2796fc3,
     type: 3}
