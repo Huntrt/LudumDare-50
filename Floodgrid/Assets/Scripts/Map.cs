@@ -14,7 +14,7 @@ public class Map : MonoBehaviour
 #region Classes
 	[Serializable] public class Settings 
 	{
-		public NodeColor emptyNode, floodedNode;
+		public NodeColor emptyNode, floodedNode, freezeNode;
 	}
 	[Serializable] public class NodeColor {public Color node, border;}
 #endregion
@@ -84,15 +84,34 @@ public class Map : MonoBehaviour
 		for (int n = 0; n < nodes.Count; n++) {if(nodes[n].coord == coord) {return nodes[n];}} return null;
 	}
 
+	public Node FindNodeAtPosition(Vector2 pos)
+	{
+		//Go through all the nodes in list then return the nodes at given position if has one
+		for (int n = 0; n < nodes.Count; n++) {if(nodes[n].position == pos) {return nodes[n];}} return null;
+	}
+
 	public Node[] ScanNode(Vector2 coord)
 	{
 		//Array for all 4 node to scan
 		Node[] scan = new Node[4];
-		//@ Return the scan result at 4 direction
-		scan[0] = FindNodeAtCoordinates(new Vector2(coord.x, coord.y + 1));
-		scan[1] = FindNodeAtCoordinates(new Vector2(coord.x, coord.y - 1));
-		scan[2] = FindNodeAtCoordinates(new Vector2(coord.x - 1, coord.y));
-		scan[3] = FindNodeAtCoordinates(new Vector2(coord.x + 1, coord.y));
+		// Go through all 4 direction of coordinates
+		for (int n = 0; n < scan.Length; n++)
+		{
+			//Find node at each direction
+			scan[n] = FindNodeAtCoordinates(coord + DirectionVector(n,1));
+		}
+		//Return the scan result
 		return scan;
+	}
+
+	public Vector2 DirectionVector(int index, int amount)
+	{
+		//@ Return vector depend on index given from 0-3 increase with amount
+		if(index == 0) {return new Vector2(0,0 + amount);}
+		if(index == 1) {return new Vector2(0,0 - amount);}
+		if(index == 2) {return new Vector2(0 - amount,0);}
+		if(index == 3) {return new Vector2(0 + amount,0);}
+		//Return zero vector if index given are not 0-3
+		return Vector2.zero;
 	}
 }

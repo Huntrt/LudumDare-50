@@ -19,7 +19,7 @@ public class ItemSpawner : MonoBehaviour
 		p.onMove += Spawn;
 	}
 
-	void Spawn()
+	void Spawn(Vector2 dir)
 	{
 		//Don't spawn item if player move not enough frequent or it first move
 		if(((p.moved % spawnFrequent) != 0) || p.moved == 0) {return;}

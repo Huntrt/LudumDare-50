@@ -788,7 +788,9 @@ MonoBehaviour:
   speed: 1
   coordinates: {x: 0, y: 0}
   drowning: 0
-  ability: 0
+  lockMovement: 0
+  equipAbility: 0
+  abilites: {fileID: 1235146508}
   itemPanelDisplay: {fileID: 1593904139}
   itemNameDisplay: {fileID: 428197343}
   itemDescriptionDisplay: {fileID: 2132848998}
@@ -1340,6 +1342,9 @@ MonoBehaviour:
     floodedNode:
       node: {r: 0.3767608, g: 0.5198255, b: 0.9490196, a: 1}
       border: {r: 0.2847059, g: 0.45305938, b: 0.9490196, a: 1}
+    freezeNode:
+      node: {r: 0, g: 0.94070315, b: 1, a: 1}
+      border: {r: 0, g: 0.83, b: 0.82023525, a: 1}
   floorPrefab: {fileID: 6886688378207204420, guid: 9162a49e488039f4699a7feb3d06fe82,
     type: 3}
   floodRate: 5
@@ -2553,7 +2558,7 @@ Transform:
   - {fileID: 961547940}
   - {fileID: 1901784293}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &795256255
 GameObject:
@@ -4186,9 +4191,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1235146506}
+  - component: {fileID: 1235146508}
   - component: {fileID: 1235146507}
   m_Layer: 0
-  m_Name: Item Spawner
+  m_Name: Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4223,13 +4229,32 @@ MonoBehaviour:
   spawnRate: 20
   spawnFrequent: 5
   spawnAmount: 1
+  despawnTurn: 12
   spawns:
   - item: {fileID: 6960743745913396434, guid: 9d3b71551bde75b4481535a6cd4e3dc4, type: 3}
-    rarity: 50
+    rarity: 0
   - item: {fileID: 9016387054677788647, guid: bc6eb8e92c472194baf3a4a259e77afc, type: 3}
-    rarity: 23
+    rarity: 0
   - item: {fileID: 5284117222345010789, guid: ed38a8998c9e0644989e0d79f30e088d, type: 3}
     rarity: 12
+--- !u!114 &1235146508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1235146505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06c2488c90eb7894cbc32f687083f714, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useAbility: 0
+  runDistance: 0
+  runIndicator: {fileID: 0}
+  bombIndicator: {fileID: 6101497115770203976, guid: b6112ef51d953a34dafc7501eb3e3791,
+    type: 3}
+  freezeRayDuration: 2
 --- !u!1 &1248876698
 GameObject:
   m_ObjectHideFlags: 0
@@ -4459,7 +4484,7 @@ RectTransform:
   - {fileID: 241767030}
   - {fileID: 1593904140}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

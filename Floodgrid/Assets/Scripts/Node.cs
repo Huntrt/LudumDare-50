@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class Node : MonoBehaviour
 {
-	public bool flooded; [HideInInspector] bool needToFlood;
+	public bool flooded; int freezeConter; [HideInInspector] bool needToFlood;
 	public Vector2 coord, position;
 	public Item itemOnNode; int despawnCounter;
 	public int neighboursCount; public Node[] neighbours;
 	public GameObject nodeObject; public SpriteRenderer nodeRender, borderRender;
+	public Map.NodeColor nodeColor;
 	Map m;
 
 	//Get the map
@@ -21,7 +22,7 @@ public class Node : MonoBehaviour
 		//Get the grid render object on the first child of this node
 		borderRender = gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>();
 		//Change color to empty color
-		ColorNode(m.settings.emptyNode.node, m.settings.emptyNode.border);
+		ColoringNode(m.settings.emptyNode);
 	}
 
 	void OnEnable() 
@@ -50,9 +51,24 @@ public class Node : MonoBehaviour
 		}
 	}
 
-	public void Flood()
+	public void Flood(Vector2 dir)
 	{
-		//? Begining flood
+		//If node is freezing
+		if(freezeConter > 0) 
+		{
+			//Decrease counter
+			freezeConter--;
+			//If freeze counter are over
+			if(freezeConter == 0)
+			{
+				//Is is now back to flood
+				flooded = true; needToFlood = true;
+				//Change node color to flood color
+				ColoringNode(m.settings.floodedNode);
+			}
+			//Don't do anything if it freeze
+			return;
+		}
 		//If this node it need to flood OR it on the border
 		if(needToFlood || (flooded == false && neighboursCount < 4))
 		{	
@@ -62,7 +78,7 @@ public class Node : MonoBehaviour
 				//Is is now flood
 				flooded = true;
 				//Change color to flood color
-				ColorNode(m.settings.floodedNode.node, m.settings.floodedNode.border);
+				ColoringNode(m.settings.floodedNode);
 			}
 			//If this node has flooded
 			if(flooded)
@@ -75,7 +91,7 @@ public class Node : MonoBehaviour
 					//If there is neighbours then that neighbours haven't flooded
 					if(neighbours[n] != null) if(!neighbours[n].flooded)
 					{
-						//That neighbours is noew need to flood
+						//That neighbours is now need to flood
 						neighbours[n].needToFlood = true;
 					}
 				}
@@ -83,7 +99,29 @@ public class Node : MonoBehaviour
 		}
 	}
 
-	public void Drain() {}
+	public void Drain() 
+	{
+		//If this node is flooded
+		if(flooded)
+		{	
+			//No longer flooded
+			flooded = false;
+			//Reset color back to empty
+			ColoringNode(m.settings.emptyNode);
+		}
+	}
+
+	public void Freeze(int duration)
+	{
+		//Only freeze not that has been flood
+		if(flooded)
+		{
+			//Set freeze counter as duration
+			freezeConter = duration;
+			//Change node color to freeze color
+			ColoringNode(m.settings.freezeNode);
+		}
+	}
 
 	public void AddItem(GameObject item)
 	{
@@ -103,7 +141,7 @@ public class Node : MonoBehaviour
 		Destroy(itemOnNode.gameObject); itemOnNode = null;
 	}
 
-	void DespawnItem()
+	void DespawnItem(Vector2 dir)
 	{
 		//If there is an item on node
 		if(itemOnNode != null)
@@ -115,7 +153,11 @@ public class Node : MonoBehaviour
 		}
 	}
 
-	public void ColorNode(Color node, Color border) {nodeRender.color = node;borderRender.color = border;}
+	public void ColoringNode(Map.NodeColor color) 
+	{
+		nodeRender.color = color.node; borderRender.color = color.border;
+		nodeColor = color;
+	}
 
 	void OnDisable()
 	{
