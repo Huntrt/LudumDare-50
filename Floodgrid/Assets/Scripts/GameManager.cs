@@ -2,6 +2,7 @@
 
 public class GameManager : MonoBehaviour
 {
+	public bool completeTutorial;
 	public int audioVolume;
 	public AudioSource sound;
 	public static GameManager i;

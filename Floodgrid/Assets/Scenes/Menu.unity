@@ -8088,10 +8088,10 @@ MonoBehaviour:
   areAssigning: 0
   waitingMessage: Press input...
   assignAction: 
-  Up: 273
-  Down: 274
-  Left: 276
-  Right: 275
+  Up: 119
+  Down: 115
+  Left: 97
+  Right: 100
   Use: 32
 --- !u!114 &1374327372
 MonoBehaviour:
@@ -8105,6 +8105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2ef0b248a1c03245858636d6709ec18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  completeTutorial: 0
   audioVolume: 5
   sound: {fileID: 1374327373}
 --- !u!82 &1374327373
