@@ -38,8 +38,6 @@ public class PlayManager : MonoBehaviour
 		pauseMenu.SetActive(!pauseMenu.activeInHierarchy);
 		//Toggle pause
 		pause = !pause;
-		//Toggle between time scale
-		if(Time.timeScale == 1){Time.timeScale = 0;} else {Time.timeScale = 1;}
 	}
 
     public void LoadSceneIndex(int i) {SceneManager.LoadScene(i, LoadSceneMode.Single);}
