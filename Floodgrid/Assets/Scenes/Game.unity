@@ -2812,7 +2812,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 703875480}
-  - component: {fileID: 703875481}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -2834,32 +2833,11 @@ Transform:
   - {fileID: 1235146506}
   - {fileID: 288509428}
   - {fileID: 961547940}
+  - {fileID: 1038720104}
   - {fileID: 1901784293}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &703875481
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 703875479}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afee16b148ba75145b003d22b68b71c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  move: {fileID: 8300000, guid: 044b7ca2ddf404747b59a05142bd4fdf, type: 3}
-  swim: {fileID: 8300000, guid: d7ec80308449bd544b8a9df24656b3e6, type: 3}
-  pickup: {fileID: 8300000, guid: 16e56c36fd53ff045a333c3194555c9f, type: 3}
-  run: {fileID: 8300000, guid: 1b3571e08396e764f9a3aada45c14014, type: 3}
-  scuba: {fileID: 8300000, guid: ffd685b63fc4970419869fcdf7d181a1, type: 3}
-  teleport: {fileID: 8300000, guid: d13578e972b32ea4b817d310607a8f2f, type: 3}
-  die: {fileID: 8300000, guid: 861dd9ceb9ac5774ea3d58ac35741027, type: 3}
-  dash: {fileID: 8300000, guid: e595ebae288c5304b9274b285c059ad0, type: 3}
-  freeze: {fileID: 8300000, guid: b1adf5d69d5d75d4b8846abe763a7f7e, type: 3}
-  explosion: {fileID: 8300000, guid: ef1d8adf44acdea4bb900a49da9f7ce4, type: 3}
 --- !u!1 &795256255
 GameObject:
   m_ObjectHideFlags: 0
@@ -4171,6 +4149,60 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1023552488}
   m_CullTransparentMesh: 0
+--- !u!1 &1038720103
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1038720104}
+  - component: {fileID: 1038720105}
+  m_Layer: 0
+  m_Name: Audio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1038720104
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1038720103}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 703875480}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1038720105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1038720103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afee16b148ba75145b003d22b68b71c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  move: {fileID: 8300000, guid: 044b7ca2ddf404747b59a05142bd4fdf, type: 3}
+  swim: {fileID: 8300000, guid: d7ec80308449bd544b8a9df24656b3e6, type: 3}
+  pickup: {fileID: 8300000, guid: 16e56c36fd53ff045a333c3194555c9f, type: 3}
+  run: {fileID: 8300000, guid: 1b3571e08396e764f9a3aada45c14014, type: 3}
+  scuba: {fileID: 8300000, guid: ffd685b63fc4970419869fcdf7d181a1, type: 3}
+  teleport: {fileID: 8300000, guid: d13578e972b32ea4b817d310607a8f2f, type: 3}
+  die: {fileID: 8300000, guid: 861dd9ceb9ac5774ea3d58ac35741027, type: 3}
+  dash: {fileID: 8300000, guid: e595ebae288c5304b9274b285c059ad0, type: 3}
+  freeze: {fileID: 8300000, guid: b1adf5d69d5d75d4b8846abe763a7f7e, type: 3}
+  explosion: {fileID: 8300000, guid: ef1d8adf44acdea4bb900a49da9f7ce4, type: 3}
+  coin: {fileID: 8300000, guid: dd0b0ce033ec04b4c8d27940617186f0, type: 3}
 --- !u!1 &1042527388
 GameObject:
   m_ObjectHideFlags: 0
@@ -5363,7 +5395,7 @@ MonoBehaviour:
   despawnTurn: 15
   spawns:
   - item: {fileID: 6960743745913396434, guid: 9d3b71551bde75b4481535a6cd4e3dc4, type: 3}
-    rarity: 100
+    rarity: 86
   - item: {fileID: 9016387054677788647, guid: bc6eb8e92c472194baf3a4a259e77afc, type: 3}
     rarity: 54
   - item: {fileID: 5284117222345010789, guid: ed38a8998c9e0644989e0d79f30e088d, type: 3}
@@ -5376,6 +5408,8 @@ MonoBehaviour:
     rarity: 40
   - item: {fileID: 8139762716438812611, guid: 0e7200a985df663499a7c86f39c46a9a, type: 3}
     rarity: 21
+  - item: {fileID: 7458146290061016983, guid: 0b31575f174958b4ea93114c66ea30f4, type: 3}
+    rarity: 32
 --- !u!114 &1235146508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5404,6 +5438,7 @@ MonoBehaviour:
     type: 3}
   dashIndicator: {fileID: 2003410181924907195, guid: 97e1a1fcdd3f12b4c896e489a56f289d,
     type: 3}
+  pointGain: 10
 --- !u!1 &1248876698
 GameObject:
   m_ObjectHideFlags: 0
@@ -7044,7 +7079,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 703875480}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1928104493
 GameObject:

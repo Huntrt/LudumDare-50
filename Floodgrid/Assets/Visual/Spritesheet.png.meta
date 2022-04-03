@@ -55,7 +55,7 @@ TextureImporter:
     second: Item_Teleport
   - first:
       213: -1623444342149152459
-    second: Item_Pusle
+    second: Item_Coin
   - first:
       213: -1125653685376602382
     second: Item_Dash
@@ -513,10 +513,10 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Item_Pusle
+      name: Item_Coin
       rect:
         serializedVersion: 2
-        x: 54
+        x: 63
         y: 0
         width: 9
         height: 9
@@ -537,7 +537,7 @@ TextureImporter:
       name: Item_Dash
       rect:
         serializedVersion: 2
-        x: 63
+        x: 54
         y: 0
         width: 9
         height: 9

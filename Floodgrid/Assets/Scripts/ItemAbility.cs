@@ -23,6 +23,8 @@ public class ItemAbility : MonoBehaviour
 	public GameObject teleportIndicator;
 	[Header("Dash")]
 	public GameObject dashIndicator;
+	[Header("Coin")]
+	public int pointGain;
 
     public void UseAbility(Item.Type use)
     {
@@ -33,6 +35,7 @@ public class ItemAbility : MonoBehaviour
         if(use == Item.Type.froze) {Froze();}
         if(use == Item.Type.teleport) {Teleport(Vector2.zero, true);}
         if(use == Item.Type.dash) {Dash();}
+        if(use == Item.Type.coin) {Coin();}
     }
 
 	public void MoveCasting(Vector2 dir)
@@ -320,6 +323,14 @@ public class ItemAbility : MonoBehaviour
 		useAbility = Item.Type.dash;
 	}
 
+	void Coin()
+	{
+		//Run the sound needed
+		GameManager.i.sound.PlayOneShot(SoundClipStorage.i.coin);
+		//Player get point
+		p.GetPoint(pointGain); CompleteCast();
+	}
+	
 	void CompleteCast()
 	{
 		//No longer use any ability

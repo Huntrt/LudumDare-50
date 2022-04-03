@@ -5,6 +5,7 @@ using TMPro;
 
 public class Player : MonoBehaviour
 {
+	int point;
 	public int moved, speed, recover, _breath; int _recover;
 	public Vector2 coordinates;
 	public bool drowning, lockMovement, invincible;
@@ -44,8 +45,8 @@ public class Player : MonoBehaviour
 	{
 		//Player has move one more time
 		moved++;
-		//Update the point counter
-		pointCounter.text = moved.ToString();
+		//Player get point
+		GetPoint(1);
 		//Calculated breathing
 		Breathing();
 		//If the player haven't has ability and there is item on destination
@@ -98,7 +99,7 @@ public class Player : MonoBehaviour
 				//Run the sound needed
 				GameManager.i.sound.PlayOneShot(SoundClipStorage.i.die);
 				//Update the point display in text
-				deadPointDisplay.text = moved.ToString();
+				deadPointDisplay.text = point.ToString();
 				//Deactive player
 				gameObject.SetActive(false);
 				//Enable die menu
@@ -173,5 +174,11 @@ public class Player : MonoBehaviour
 		}
 		//Cast any abilites that use move despite movement lock
 		abilites.MoveCasting(direction);
+	}
+
+	public void GetPoint(int amount)
+	{
+		//Increase the point and display point
+		point += amount; pointCounter.text = point.ToString();
 	}
 }
