@@ -5504,9 +5504,9 @@ MonoBehaviour:
   - item: {fileID: 6960743745913396434, guid: 9d3b71551bde75b4481535a6cd4e3dc4, type: 3}
     rarity: 40
   - item: {fileID: 9016387054677788647, guid: bc6eb8e92c472194baf3a4a259e77afc, type: 3}
-    rarity: 32
+    rarity: 25
   - item: {fileID: 5284117222345010789, guid: ed38a8998c9e0644989e0d79f30e088d, type: 3}
-    rarity: 12
+    rarity: 20
 --- !u!114 &1235146508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5520,11 +5520,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useAbility: 0
-  runDistance: 0
-  runIndicator: {fileID: 0}
+  runDistance: 4
+  runIndicator: {fileID: 6101497115770203976, guid: 9acafc9f3ddb99c42bb62ec5b416ef60,
+    type: 3}
   bombIndicator: {fileID: 6101497115770203976, guid: b6112ef51d953a34dafc7501eb3e3791,
     type: 3}
   freezeRayDuration: 7
+  freezeRayIndicator: {fileID: 7271403300148204784, guid: 117fc56b9f8e2124ebf4d77ea2796fc3,
+    type: 3}
 --- !u!1 &1248876698
 GameObject:
   m_ObjectHideFlags: 0
