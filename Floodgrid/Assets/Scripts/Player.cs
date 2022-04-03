@@ -48,8 +48,10 @@ public class Player : MonoBehaviour
 		pointCounter.text = moved.ToString();
 		//Calculated breathing
 		Breathing();
-		//If the player haven't has ability and there is item on destination then pickup item
-		if(equipAbility == Item.Type.none && destination.itemOnNode != null) destination.PickItem();
+		//If the player haven't has ability and there is item on destination
+		if(equipAbility == Item.Type.none && destination.itemOnNode != null) 
+		//Pickup the item and play sound
+		{destination.PickItem(); GameManager.i.sound.PlayOneShot(SoundClipStorage.i.pickup);}
 	}
 
 	public void Equiping(Item pick)
@@ -93,6 +95,8 @@ public class Player : MonoBehaviour
 			//! If out of breath
 			if(_breath <= 0)
 			{
+				//Run the sound needed
+				GameManager.i.sound.PlayOneShot(SoundClipStorage.i.die);
 				//Update the point display in text
 				deadPointDisplay.text = moved.ToString();
 				//Deactive player
@@ -147,12 +151,16 @@ public class Player : MonoBehaviour
 					{
 						//Player are now drowning
 						drowning = true;
+						//Run the sound needed when not invincible
+						if(!invincible) GameManager.i.sound.PlayOneShot(SoundClipStorage.i.swim);
 					} 
 					//If destination are empty or is freeze
 					if(!target.flooded || target.freezeConter > 0)
 					{
 						//Player are no longer drown
 						drowning = false;
+						//Run the sound needed when not invincible
+						if(!invincible) GameManager.i.sound.PlayOneShot(SoundClipStorage.i.move);
 					}
 					//The player has move to target while not invincible
 					if(!invincible) {Move(target);}

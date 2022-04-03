@@ -8,11 +8,10 @@ public class KeybinderSystem : MonoBehaviour
 	[SerializeField] string waitingMessage;
 	[SerializeField] string assignAction;
     TextMeshProUGUI assignDisplay;
-	public static KeybinderSystem i;
+	//Set this class to singleton
+	public static KeybinderSystem i {get{if(_i==null){_i = GameObject.FindObjectOfType<KeybinderSystem>();}return _i;}} static KeybinderSystem _i;
 
 	public KeyCode Up, Down, Left, Right, Use;
-
-	void Awake() {i = this;}
 
 	public void StartAssign(KeySetter setter)
 	{

@@ -56,6 +56,8 @@ public class ItemAbility : MonoBehaviour
 			p.invincible = false;
 			//No longer use any ability
 			useAbility = Item.Type.none;
+			//Run the sound needed
+			GameManager.i.sound.PlayOneShot(SoundClipStorage.i.run);
 			//Complete casting of this ability
 			ClearList(); CompleteCast(); return;
 		}
@@ -114,6 +116,8 @@ public class ItemAbility : MonoBehaviour
 				}
 				//Movement is no longer lock
 				p.lockMovement = false;
+				//Run the sound needed
+				GameManager.i.sound.PlayOneShot(SoundClipStorage.i.explosion);
 				//Destroy the temporary indicator
 				Destroy(tempIndicator);
 				//Complete casting of this ability
@@ -168,6 +172,8 @@ public class ItemAbility : MonoBehaviour
 			}
 			//Movement is no longer lock
 			p.lockMovement = false;
+			//Run the sound needed
+			GameManager.i.sound.PlayOneShot(SoundClipStorage.i.freeze);
 			//Clear affecting node
 			ClearList();
 			//Complete casting of this ability
@@ -203,6 +209,8 @@ public class ItemAbility : MonoBehaviour
 	{
 		//Reset the breath counter
 		p._breath = p.breathCounter.Length;
+		//Run the sound needed
+		GameManager.i.sound.PlayOneShot(SoundClipStorage.i.scuba);
 		//Active all the breath counter
 		for (int b = 0; b < p.breathCounter.Length; b++) {p.breathCounter[b].SetActive(true);}
 		CompleteCast();
@@ -212,6 +220,8 @@ public class ItemAbility : MonoBehaviour
 	{
 		//Froze all the node
 		for (int n = 0; n < m.nodes.Count; n++) {m.nodes[n].Freeze(frozeDuration);}
+		//Run the sound needed
+		GameManager.i.sound.PlayOneShot(SoundClipStorage.i.freeze);
 		CompleteCast();
 	}
 
@@ -240,6 +250,8 @@ public class ItemAbility : MonoBehaviour
 				}
 				//Movement is no longer lock
 				p.lockMovement = false;
+				//Run the sound needed
+				GameManager.i.sound.PlayOneShot(SoundClipStorage.i.teleport);
 				//Destroy the temporary indicator
 				Destroy(tempIndicator);
 				//Complete casting of this ability
@@ -276,6 +288,8 @@ public class ItemAbility : MonoBehaviour
 			p.invincible = false;
 			//No longer use any ability
 			useAbility = Item.Type.none;
+			//Run the sound needed
+			GameManager.i.sound.PlayOneShot(SoundClipStorage.i.dash);
 			//Complete casting of this ability
 			ClearList(); CompleteCast(); return;
 		}
