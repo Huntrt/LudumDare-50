@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5337330840280025900}
   - component: {fileID: 6720566000131583012}
   m_Layer: 0
-  m_Name: Run Indicator
+  m_Name: Bomb Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,9 +70,9 @@ SpriteRenderer:
   m_SortingLayerID: -992232899
   m_SortingLayer: 1
   m_SortingOrder: 5
-  m_Sprite: {fileID: 7357123456376359846, guid: 27409532ec6365d48a2971f104023f5e,
+  m_Sprite: {fileID: 7021449457718125206, guid: 27409532ec6365d48a2971f104023f5e,
     type: 3}
-  m_Color: {r: 0, g: 1, b: 0.013520718, a: 0.5882353}
+  m_Color: {r: 1, g: 0, b: 0.26666668, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

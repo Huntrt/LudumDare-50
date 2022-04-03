@@ -792,6 +792,7 @@ MonoBehaviour:
   coordinates: {x: 0, y: 0}
   drowning: 0
   lockMovement: 0
+  invincible: 0
   equipAbility: 0
   abilites: {fileID: 1235146508}
   breathCounter:
@@ -1360,7 +1361,7 @@ MonoBehaviour:
       type: 3}
   floorPrefab: {fileID: 6886688378207204420, guid: 9162a49e488039f4699a7feb3d06fe82,
     type: 3}
-  floodRate: 5
+  floodRate: 2
   mapSize: {x: 17, y: 17}
   nodeSpacing: {x: 0.54, y: 0.54}
   nodes: []
@@ -5497,16 +5498,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnRate: 20
-  spawnFrequent: 5
+  spawnFrequent: 3
   spawnAmount: 1
-  despawnTurn: 12
+  despawnTurn: 15
   spawns:
   - item: {fileID: 6960743745913396434, guid: 9d3b71551bde75b4481535a6cd4e3dc4, type: 3}
-    rarity: 40
+    rarity: 100
   - item: {fileID: 9016387054677788647, guid: bc6eb8e92c472194baf3a4a259e77afc, type: 3}
-    rarity: 25
+    rarity: 54
   - item: {fileID: 5284117222345010789, guid: ed38a8998c9e0644989e0d79f30e088d, type: 3}
-    rarity: 20
+    rarity: 26
+  - item: {fileID: 5687750551435150732, guid: 30bb9ac0073f1754695ed85dbb23a0b6, type: 3}
+    rarity: 25
+  - item: {fileID: 645177783743812034, guid: 343c44988b6a91449a92fb8fbb1daa54, type: 3}
+    rarity: 25
+  - item: {fileID: 95928860999064720, guid: 0e2163fecde0083449ce06c9b9f82bec, type: 3}
+    rarity: 40
+  - item: {fileID: 8139762716438812611, guid: 0e7200a985df663499a7c86f39c46a9a, type: 3}
+    rarity: 21
 --- !u!114 &1235146508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5525,8 +5534,13 @@ MonoBehaviour:
     type: 3}
   bombIndicator: {fileID: 6101497115770203976, guid: b6112ef51d953a34dafc7501eb3e3791,
     type: 3}
-  freezeRayDuration: 7
+  freezeRayDuration: 25
   freezeRayIndicator: {fileID: 7271403300148204784, guid: 117fc56b9f8e2124ebf4d77ea2796fc3,
+    type: 3}
+  frozeDuration: 10
+  teleportIndicator: {fileID: 1857543786250503081, guid: 12de92730c1eceb428b64ac675228e60,
+    type: 3}
+  dashIndicator: {fileID: 2003410181924907195, guid: 97e1a1fcdd3f12b4c896e489a56f289d,
     type: 3}
 --- !u!1 &1248876698
 GameObject:

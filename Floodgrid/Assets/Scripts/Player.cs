@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
 {
 	public int moved, speed, recover, _breath; int _recover;
 	public Vector2 coordinates;
-	public bool drowning, lockMovement;
+	public bool drowning, lockMovement, invincible;
 	public Item.Type equipAbility;
 	public delegate void OnMove(Vector2 moveDirection); public event OnMove onMove;
 	[SerializeField] ItemAbility abilites;
@@ -46,10 +46,10 @@ public class Player : MonoBehaviour
 		moved++;
 		//Update the point counter
 		pointCounter.text = moved.ToString();
-		//Run function calculted breathing
+		//Calculated breathing
 		Breathing();
-		//If the player haven't has ability and there is item on destination then pick it up
-		if(equipAbility == Item.Type.none && destination.itemOnNode != null) {destination.PickItem();}
+		//If the player haven't has ability and there is item on destination then pickup item
+		if(equipAbility == Item.Type.none && destination.itemOnNode != null) destination.PickItem();
 	}
 
 	public void Equiping(Item pick)
@@ -88,8 +88,8 @@ public class Player : MonoBehaviour
 		{
 			//Lost an breath point
 			_breath--;
-			//Hide an bubble
-			breathCounter[_breath].SetActive(false);
+			//Hide an bubble (prevent it from go to -X)
+			if(_breath >= 0) {breathCounter[_breath].SetActive(false);}
 			//! If out of breath
 			if(_breath <= 0)
 			{
@@ -154,8 +154,8 @@ public class Player : MonoBehaviour
 						//Player are no longer drown
 						drowning = false;
 					}
-					//The player has move to target
-					Move(target);
+					//The player has move to target while not invincible
+					if(!invincible) {Move(target);}
 				}
 				//! This way has been blocked
 				else {blocked = true;}
